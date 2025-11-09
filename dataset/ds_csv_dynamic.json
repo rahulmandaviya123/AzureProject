@@ -1,10 +1,6 @@
 {
 	"name": "ds_csv_dynamic",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_datalake",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"p_container": {
 				"type": "String"

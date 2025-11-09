@@ -1,10 +1,6 @@
 {
 	"name": "ds_parquet",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_datalake",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
