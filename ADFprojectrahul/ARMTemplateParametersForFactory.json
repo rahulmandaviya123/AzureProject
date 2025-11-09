@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADFprojectrahul"
+		},
+		"AzureDataLakeConnection_accountKey": {
+			"value": ""
+		},
+		"AzureSql_password": {
+			"value": ""
+		},
+		"AzureDataLakeConnection_properties_typeProperties_url": {
+			"value": "https://adfdatastore.dfs.core.windows.net/"
+		},
+		"AzureSql_properties_typeProperties_server": {
+			"value": "dfproservers.database.windows.net"
+		},
+		"AzureSql_properties_typeProperties_database": {
+			"value": "dfprodb"
+		},
+		"AzureSql_properties_typeProperties_userName": {
+			"value": "admin1"
+		}
+	}
+}
