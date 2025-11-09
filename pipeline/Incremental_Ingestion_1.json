@@ -1,9 +1,9 @@
 {
-	"name": "Incremental_Ingestion_copy1",
+	"name": "Incremental_Ingestion_1",
 	"properties": {
 		"activities": [
 			{
-				"name": "ForEach1",
+				"name": "ForEach",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
@@ -317,6 +317,39 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Alerts",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-06.northcentralus.logic.azure.com:443/workflows/752f7e877f954f2e9402fcf902e63fcd/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=v5yWg9YP-XovgNR5md1lGmLFMP1VqX8YaQh-rRfhN0Q",
+					"body": {
+						"value": "{\n    \"Pipeline_name\" : \"@{pipeline().Pipeline}\",\n    \"Pipeline_runID\" : \"@{pipeline().RunId}\",\n    \"Status\" : \"@{activity('Execute Pipeline1').Status}\",\n    \"Error\" : \"@{if(equals(activity('Execute Pipeline1').Status,'Failed'),string(activity('Execute Pipeline1').error),'No error')}\"\n\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Execute Pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
 				}
 			}
 		],
