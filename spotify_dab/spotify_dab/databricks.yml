@@ -1,0 +1,51 @@
+# This is a Databricks asset bundle definition for spotify_dab.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: spotify_dab
+  uuid: a3c90c0c-e3e3-4bc1-b269-83a57373925a
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+artifacts:
+  python_artifact:
+    type: whl
+    build: uv build --wheel
+
+# Variable declarations. These variables are assigned in the dev/prod targets below.
+variables:
+  catalog:
+    description: The catalog to use
+  schema:
+    description: The schema to use
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-3840841360939287.7.azuredatabricks.net
+    presets:
+      source_linked_deployment: false
+    variables:
+      catalog: spotify_catalog
+      schema: ${workspace.current_user.short_name}
+
+
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-3840841360939287.7.azuredatabricks.net
+      # We explicitly deploy to /Workspace/Users/rahulmandaviya1432@gmail.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/rahulmandaviya1432@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: spotify_catalog
+      schema: prod
+    permissions:
+      - user_name: rahulmandaviya1432@gmail.com
+        level: CAN_MANAGE
