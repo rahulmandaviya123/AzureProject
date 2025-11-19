@@ -5,20 +5,26 @@ This project demonstrates a complete **Azure Data Engineering pipeline** built u
 The pipeline performs **incremental data ingestion** using dynamic datasets and metadata-driven architecture.
 
 ## 📁 Folder Structure
-AzureProject-main/
-│── dataset/
-│   ├── Azure_Sql.json
-│   ├── Json_dynamic.json
-│   └── Parquet_dynamic.json
-│── linkedService/
-│   ├── AzureDataLakeConnection.json
-│   └── AzureSql.json
-│── pipeline/
-│   └── Incremental_Ingestion.json
-│── factory/
-│   └── ADFprojectrahul.json
-│── publish_config.json
-└── README.md
+    ┌──────────────────────────┐
+    │     Source Systems       │
+    │   (Azure SQL Database)   │
+    └────────────┬─────────────┘
+                 │
+                 ▼
+    ┌──────────────────────────┐
+    │  Azure Data Factory      │
+    │  • Incremental Pipeline  │
+    │  • Dynamic Parameters    │
+    │  • Mapping Data Flows    │
+    └────────────┬─────────────┘
+                 │
+                 ▼
+    ┌──────────────────────────┐
+    │ Azure Data Lake Gen2     │
+    │  • Raw (JSON/CSV)        │
+    │  • Processed (Parquet)   │
+    └──────────────────────────┘
+
 
 ## 🚀 Architecture
 Raw → ADF → Data Lake → Parquet
