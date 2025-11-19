@@ -50,18 +50,25 @@ ADF, ADLS, Azure SQL, Parquet
 This project implements a full Medallion Architecture (Bronze → Silver → Gold) using Databricks for Spotify analytics.
 
 ## 📁 Folder Structure
-spotify_dab/
-│── manifest.mf
-│── src/
-│   ├── bronze/
-│   ├── silver/
-│   │   └── silver_Dimentions.py
-│   └── gold/
-│       └── GoldPipeline/
-│           ├── transformations/
-│           └── utilities/
-│── utils/
-└── README.md
+       ┌───────────────────────────────┐
+       │           Bronze               │
+       │ Raw ingested Spotify data      │
+       └──────────────┬────────────────┘
+                      │
+                      ▼
+       ┌───────────────────────────────┐
+       │            Silver              │
+       │ Cleaned, normalized data       │
+       │ Conformed dimensions           │
+       └──────────────┬────────────────┘
+                      │
+                      ▼
+       ┌───────────────────────────────┐
+       │             Gold               │
+       │ Star Schema Models             │
+       │ Fact & Dimension Tables        │
+       └───────────────────────────────┘
+
 
 ## ✨ Features
 - Modular transformations  
