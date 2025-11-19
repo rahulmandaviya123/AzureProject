@@ -4,7 +4,7 @@
 This project demonstrates a complete **Azure Data Engineering pipeline** built using **Azure Data Factory (ADF)**, **Azure Data Lake Storage Gen2**, and **Azure SQL Database**.  
 The pipeline performs **incremental data ingestion** using dynamic datasets and metadata-driven architecture.
 
-## 📁 Folder Structure
+## 📁 Process Workflows
     ┌──────────────────────────┐
     │     Source Systems       │
     │   (Azure SQL Database)   │
@@ -44,5 +44,39 @@ ADF, ADLS, Azure SQL, Parquet
 3. Deploy datasets & pipelines  
 4. Run the pipeline  
 
+# Spotify End-to-End Data Engineering Project (Databricks + Medallion Architecture) (Task-2 Transformations)
+
+## 📌 Overview
+This project implements a full Medallion Architecture (Bronze → Silver → Gold) using Databricks for Spotify analytics.
+
+## 📁 Folder Structure
+spotify_dab/
+│── manifest.mf
+│── src/
+│   ├── bronze/
+│   ├── silver/
+│   │   └── silver_Dimentions.py
+│   └── gold/
+│       └── GoldPipeline/
+│           ├── transformations/
+│           └── utilities/
+│── utils/
+└── README.md
+
+## ✨ Features
+- Modular transformations  
+- Gold layer star schema  
+- Delta Lake optimized pipeline  
+
+## 🛠️ Technologies
+Databricks, Delta Lake, Python, PySpark  
+
+## ▶️ How to Run
+1. Load Bronze data  
+2. Run Silver scripts  
+3. Run Gold transformations  
+4. Query tables  
+
 ## 👤 Author
 Rahul Mandaviya
+
